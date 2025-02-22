@@ -42,7 +42,7 @@ export function CardWithForm({ events }) {
                   key={suggestion.ticker}
                   onSelect={() => {
                     setInputValue(suggestion.title);
-                    router.push(`/markets/${suggestion.ticker}`);
+                    router.push(`/markets/${suggestion.series_ticker}/${suggestion.ticker}`);
                   }}
                 >
                   {suggestion.title}
