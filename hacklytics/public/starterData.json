@@ -1,0 +1,85 @@
+{
+    "arbitrages": [
+      {
+        "event_ticker": "KXROBOTMARS-35",
+        "title": "Will a humanoid robot walk on Mars before a human does?",
+        "volume": 3913,
+        "yes_ask": 33,
+        "no_bid": 67,
+        "Category": "Science and Technology"
+      },
+      {
+        "event_ticker": "KXSPACEWALK-42",
+        "title": "Is space tourism about to become affordable?",
+        "volume": 5200,
+        "yes_ask": 45,
+        "no_bid": 55,
+        "Category": "Science and Technology"
+      },
+      {
+        "event_ticker": "KXAIREVOLUTION-12",
+        "title": "Will AI surpass human intelligence in the next decade?",
+        "volume": 10234,
+        "yes_ask": 60,
+        "no_bid": 40,
+        "Category": "Science and Technology"
+      },
+      {
+        "event_ticker": "KXCLIMATE2025-09",
+        "title": "Can renewable energy replace fossil fuels by 2030?",
+        "volume": 8765,
+        "yes_ask": 75,
+        "no_bid": 25,
+        "Category": "Environment"
+      },
+      {
+        "event_ticker": "KXMEDICINE-21",
+        "title": "Will gene editing revolutionize cancer treatment?",
+        "volume": 4532,
+        "yes_ask": 38,
+        "no_bid": 62,
+        "Category": "Healthcare"
+      },
+      {
+        "event_ticker": "KXCYBERSEC-77",
+        "title": "Is quantum computing the future of cybersecurity?",
+        "volume": 3321,
+        "yes_ask": 50,
+        "no_bid": 50,
+        "Category": "Technology"
+      },
+      {
+        "event_ticker": "KXENERGY-88",
+        "title": "Will nuclear fusion be a viable energy source?",
+        "volume": 2890,
+        "yes_ask": 42,
+        "no_bid": 58,
+        "Category": "Science and Technology"
+      },
+      {
+        "event_ticker": "KXROBOTS-11",
+        "title": "Could robots replace humans in dangerous jobs?",
+        "volume": 7777,
+        "yes_ask": 55,
+        "no_bid": 45,
+        "Category": "Robotics"
+      },
+      {
+        "event_ticker": "KXENVIRON-66",
+        "title": "Are electric cars the solution to urban pollution?",
+        "volume": 5120,
+        "yes_ask": 47,
+        "no_bid": 53,
+        "Category": "Automotive"
+      },
+      {
+        "event_ticker": "KXMEDTECH-30",
+        "title": "Will wearable tech soon monitor all aspects of health?",
+        "volume": 6600,
+        "yes_ask": 29,
+        "no_bid": 71,
+        "Category": "Healthcare"
+      }
+    ]
+  }
+  
