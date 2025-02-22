@@ -41,7 +41,7 @@ export function CardWithForm({ events }) {
                   key={suggestion.ticker}
                   onSelect={() => {
                     setInputValue(suggestion.title);
-                    router.push(`/results?query=${encodeURIComponent(suggestion.ticker)}`);
+                    router.push(`/markets/${suggestion.ticker}`);
                   }}
                 >
                   {suggestion.title} <span className="hidden">({suggestion.ticker})</span>

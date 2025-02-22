@@ -1,12 +1,14 @@
-"use client";
+"use server";
 import React from "react";
 import { CardWithForm } from "@/components/cardWithForm";
 import { TopArbitrages } from "@/components/TopArbitrage";
-import fakeData from "../components/fakeData.json";
+import { api } from './utils/helpers';
 import styles from "./homePage.module.css";
 
-export default function Home() {
-  const eventTicker = 'KXOSCARWINNERS-25AA559';
+
+export default async function Home() {
+  const data = await api.get("/api/all");
+  console.log(data);
   return (
       <div className="min-h-screen bg-[#d4bf79] p-8">
         <div className={styles.container}>
@@ -17,7 +19,7 @@ export default function Home() {
           </div>
 
           <div className="flex-1">
-            <CardWithForm events={fakeData.Events} />
+            <CardWithForm events={data} />
           </div>
         </div>
       </div>

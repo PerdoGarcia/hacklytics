@@ -1,4 +1,4 @@
-// utils/apiHelpers.js
+// utils/helpers.js
 const BASE_URL = 'http://localhost:8000';
 
 // Base request helper
