@@ -63,12 +63,12 @@ const Header = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-                <Link
+                {/* <Link
                   href="/simulator"
                   className="text-gray-600 hover:text-black transition-colors"
                 >
                   Simulator
-                </Link>
+                </Link> */}
             </motion.div>
           </nav>
         </div>
