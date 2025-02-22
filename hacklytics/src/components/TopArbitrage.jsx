@@ -28,6 +28,7 @@ import { useState, useEffect } from 'react';
 
 export function TopArbitrages() {
     const [data, setData] = useState(null);
+    const [range, setRange] = useState([0, 4])
 
     useEffect(() => {
         fetch('/starterData.json')
@@ -42,6 +43,8 @@ export function TopArbitrages() {
     if (!data) {
         return <div>Loading...</div>;
     }
+
+    console.log(range)
 
 
     return (
