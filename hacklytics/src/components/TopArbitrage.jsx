@@ -45,8 +45,8 @@ export function TopArbitrages() {
 
 
     return (
-        <Card className="w-[350px]">
-            <CardHeader>
+        <Card className="w-[500px]">
+            <CardHeader className="text-center">
                 <CardTitle>
                     Top Arbitrages
                 </CardTitle>
@@ -54,10 +54,11 @@ export function TopArbitrages() {
                     Top calculated arbitrages just for you by our algorithm!
                 </CardDescription>
             </CardHeader>
-
-            {data.arbitrages?.map(arb => (
-                <ArbitrageItem key={arb.title} {...arb} />
-            ))}
+            <div className="space-y-4 pb-8">
+                {data.arbitrages?.map(arb => (
+                    <ArbitrageItem key={arb.title} {...arb} />
+                ))}
+            </div>
         </Card>
     )
 }

@@ -22,7 +22,7 @@ export function CardWithForm({ events }) {
   );
 
   return (
-    <Card className="w-[350px]">
+    <Card className="w-[400px]">
       <CardHeader>
         <CardTitle>Search a market</CardTitle>
         <CardDescription>Enter a ticker or a description of event</CardDescription>
