@@ -2,7 +2,7 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { Command, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 
 export function CardWithForm({ events }) {
   const router = useRouter();
@@ -40,10 +40,7 @@ export function CardWithForm({ events }) {
                 <CommandItem
                   key={suggestion.ticker}
                   onSelect={() => {
-                    // Optionally update the input to the full title (or leave as-is)
                     setInputValue(suggestion.title);
-                    // Navigate using either the ticker or title as the query,
-                    // adjust this depending on your needs.
                     router.push(`/results?query=${encodeURIComponent(suggestion.ticker)}`);
                   }}
                 >

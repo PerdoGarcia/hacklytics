@@ -33,7 +33,7 @@ export function ArbitrageItem(props) {
       </CardContent>
       <CardFooter>
         Category: {props.Category}
-      </CardFooter> 
+      </CardFooter>
     </Card>
   );
 }
