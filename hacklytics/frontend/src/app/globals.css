@@ -2,6 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer utilities {
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600;
+  }
+  
+  .card-hover {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+  
+  .glass-effect {
+    @apply backdrop-blur-lg bg-white/10;
+  }
+
+  .dashboard-card {
+    @apply bg-slate-800/90 backdrop-blur-lg rounded-lg shadow-xl p-6 hover:shadow-2xl transition-all duration-300;
+  }
+  
+  .scrollbar-custom {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.slate.700') theme('colors.slate.800');
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background: theme('colors.slate.800');
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background-color: theme('colors.slate.700');
+    border-radius: 20px;
+    border: 2px solid theme('colors.slate.800');
+  }
+}
+
 
 
 @layer base {
@@ -10,7 +57,7 @@
     --gold: 37 89% 95% !important;
 
 
-    --background: 0 0% 100%;
+    --background: 215 25% 27%;
 
     --foreground: 0 0% 3.9%;
 
