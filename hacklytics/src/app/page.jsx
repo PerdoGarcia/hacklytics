@@ -5,6 +5,7 @@ import React from "react";
 import { CardWithForm } from "@/components/cardWithForm";
 import fakeData from "../components/fakeData.json"  // Import your JSON file
 
+import { TopArbitrages, topArbitrages } from "@/components/TopArbitrage"
 
 export default function Home() {
 
@@ -17,6 +18,7 @@ export default function Home() {
         <CardWithForm
         events={fakeData.Events}
         />
+        <TopArbitrages />
       </main>
     </div>
   );
