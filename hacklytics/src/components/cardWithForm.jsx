@@ -1,59 +1,61 @@
-import * as React from "react"
+"use client";
+import * as React from "react";
+import { useRouter } from "next/navigation";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 
-import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
+export function CardWithForm({ events }) {
+  const router = useRouter();
+  const [inputValue, setInputValue] = React.useState("");
 
-export function CardWithForm() {
+  // Build suggestions with separate keys.
+  const suggestions = events.map((event) => ({
+    ticker: event.event_ticker,
+    title: event.title,
+  }));
+
+  // Filter suggestions based on both the title and the ticker.
+  const filteredSuggestions = suggestions.filter(
+    (suggestion) =>
+      suggestion.title.toLowerCase().includes(inputValue.toLowerCase()) ||
+      suggestion.ticker.toLowerCase().includes(inputValue.toLowerCase())
+  );
+
   return (
     <Card className="w-[350px]">
       <CardHeader>
-        <CardTitle>Create project</CardTitle>
-        <CardDescription>Deploy your new project in one-click.</CardDescription>
+        <CardTitle>Search a market</CardTitle>
+        <CardDescription>Enter a ticker or a description of event</CardDescription>
       </CardHeader>
       <CardContent>
-        <form>
-          <div className="grid w-full items-center gap-4">
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="name">Name</Label>
-              <Input id="name" placeholder="Name of your project" />
-            </div>
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="framework">Framework</Label>
-              <Select>
-                <SelectTrigger id="framework">
-                  <SelectValue placeholder="Select" />
-                </SelectTrigger>
-                <SelectContent position="popper">
-                  <SelectItem value="next">Next.js</SelectItem>
-                  <SelectItem value="sveltekit">SvelteKit</SelectItem>
-                  <SelectItem value="astro">Astro</SelectItem>
-                  <SelectItem value="nuxt">Nuxt.js</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-        </form>
+        <Command>
+          <CommandInput
+            placeholder="Search markets..."
+            value={inputValue}
+            onValueChange={setInputValue}
+          />
+          <CommandList className="max-h-[300px] overflow-y-auto">
+            <CommandGroup heading="Markets">
+              {filteredSuggestions.map((suggestion) => (
+                <CommandItem
+                  key={suggestion.ticker}
+                  onSelect={() => {
+                    // Optionally update the input to the full title (or leave as-is)
+                    setInputValue(suggestion.title);
+                    // Navigate using either the ticker or title as the query,
+                    // adjust this depending on your needs.
+                    router.push(`/results?query=${encodeURIComponent(suggestion.ticker)}`);
+                  }}
+                >
+                  {suggestion.title} <span className="text-muted">({suggestion.ticker})</span>
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          </CommandList>
+        </Command>
       </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button variant="outline">Cancel</Button>
-        <Button>Deploy</Button>
-      </CardFooter>
     </Card>
-  )
+  );
 }
+
+export default CardWithForm;
