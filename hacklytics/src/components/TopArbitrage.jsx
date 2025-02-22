@@ -10,6 +10,9 @@ import {
 } from "@/components/ui/card";
 import { ArbitrageItem } from "./ArbitrageItem";
 
+// import button
+import { Button } from "@/components/ui/button";
+
 export function TopArbitrages() {
   const [data, setData] = useState(null);
   const [page, setPage] = useState(0);
