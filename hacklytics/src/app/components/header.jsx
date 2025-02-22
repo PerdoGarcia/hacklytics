@@ -27,19 +27,19 @@ const Header = () => {
           >
             <Link href="/" className="flex items-center group">
               <div className="relative w-8 h-8 mr-2">
-                <Image
+                {/* <Image
                   src="/logo2.jpg"
-                  alt="Traider Logo"
+                  alt="Arbitrage Logo"
                   fill
                   className="object-contain"
                   priority
-                />
+                /> */}
               </div>
               <span className="text-2xl font-bold text-gray-800 relative">
-                tr
+                Arbitr
                 <span className="text-[#509048]">a</span>
-                <span className="text-[#509048]">i</span>
-                der
+                <span className="text-[#509048]">g</span>
+                <span className="text-[#509048]">e</span>
                 <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#408830] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
               </span>
             </Link>
@@ -51,12 +51,12 @@ const Header = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <Link
+              {/* <Link
                 href="/about"
                 className="text-gray-600 hover:text-gray-900 transition-colors"
               >
                 About
-              </Link>
+              </Link> */}
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: -10 }}
