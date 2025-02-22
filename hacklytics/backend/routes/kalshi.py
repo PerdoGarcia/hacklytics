@@ -93,31 +93,73 @@ def get_candlesticks():
 
 @kalshi_bp.route('/api/all', methods=['GET'])
 def get_all():
-    # Get event_ticker from query parameters
     try:
-        # Make request to Kalshi API
+        # Get list of events
         response = requests.get(
             f'https://api.elections.kalshi.com/trade-api/v2/events?limit=10&status=open',
             headers={
                 'Authorization': f'Bearer {KALSHI_API_TOKEN}'
             }
         )
-
-        # Check if request was successful
         response.raise_for_status()
-
         data = response.json()
 
-        events = []
+        # events = []/
+        markets = []
 
-        for i in data["events"]:
-            event_ticker = i["event_ticker"]
-            title = i["title"]
-            events.append({"event_ticker": event_ticker, "title": title})
+        # Get detailed info for each event
+        for event in data["events"]:
+            event_ticker = event["event_ticker"]
 
-        # Return the data
-        return jsonify(events)
+            # Get detailed event info using the existing endpoint
+            event_response = requests.get(
+                f'https://api.elections.kalshi.com/trade-api/v2/events/{event_ticker}',
+                headers={
+                    'Authorization': f'Bearer {KALSHI_API_TOKEN}'
+                }
+            )
+            event_response.raise_for_status()
+            event_details = event_response.json()
+
+            for market in event_details["markets"]:
+                if market["status"] == "closed" or market["market_type"] != "binary":
+                    continue
+
+                market_details = {
+                "series_ticker" : event_details["event"]["series_ticker"],
+                "title" : get_market_display_title(market, event_details["event"]["title"]),
+                "ticker" : market["ticker"],
+                "yes_ask" : market["yes_ask"],
+                "no_bid" : market["no_bid"],
+                }
+                markets.append(market_details)
+
+        return jsonify(markets)
 
     except requests.exceptions.RequestException as error:
         print('Error fetching event data:', str(error))
         return jsonify({'error': str(error)}), 500
+
+def get_market_display_title(market, event_title):
+    # Start with event title
+    display_title = event_title
+
+    # If yes_sub_title exists and isn't empty
+    if market.get("yes_sub_title") and market["yes_sub_title"].strip():
+        return f"{display_title} - {market['yes_sub_title']}"
+
+    # If only subtitle exists
+    elif market.get("subtitle") and market["subtitle"].strip():
+        return f"{display_title} - {market['subtitle']}"
+
+    # If title exists (though in your example it's empty)
+    elif market.get("title") and market["title"].strip():
+        return f"{display_title} - {market['title']}"
+
+    # Fallback to event title + ticker
+    else:
+        return f"{display_title} - {market['ticker']}"
+
+def parse_markets():
+    # Get list of events
+   pass
