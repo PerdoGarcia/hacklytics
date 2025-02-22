@@ -1,9 +1,7 @@
 "use client";
-import Image from "next/image";
 import React from "react";
 import { cn } from "@/lib/utils";
 import { CardWithForm } from "@/components/cardWithForm";
-import EventData from "@/components/eventDataReturn";
 
 export default function Home() {
   const eventTicker = 'KXOSCARWINNERS-25AA559';
