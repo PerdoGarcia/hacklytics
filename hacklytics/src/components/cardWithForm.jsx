@@ -44,7 +44,7 @@ export function CardWithForm({ events }) {
                     router.push(`/results?query=${encodeURIComponent(suggestion.ticker)}`);
                   }}
                 >
-                  {suggestion.title} <span className="text-muted">({suggestion.ticker})</span>
+                  {suggestion.title} <span className="hidden">({suggestion.ticker})</span>
                 </CommandItem>
               ))}
             </CommandGroup>

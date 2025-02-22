@@ -1,6 +1,5 @@
 import * as React from "react"
 
-import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
@@ -9,26 +8,17 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
 
 export function ArbitrageItem(props) {
   return (
-    <div className="flex items-center justify-center">
-      <Card className="w-[400px] py-4 px-6">
+    <div className="flex justify-center w-full"> {/* Add justify-center and w-full */}
+      <Card className="w-[450px] py-4 px-6">
         <CardTitle>
           {props.title}
         </CardTitle>
         <CardDescription>
           Category: {props.Category}
-        </CardDescription> 
+        </CardDescription>
 
         <div className="flex items-center justify-center pt-2 space-x-4">
           <CardContent className="bg-green-100 text-green-800 p-2 rounded">

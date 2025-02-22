@@ -7,6 +7,9 @@
 @layer base {
   :root {
 
+    --gold: 37 89% 95% !important;
+
+
     --background: 0 0% 100%;
 
     --foreground: 0 0% 3.9%;
@@ -58,6 +61,8 @@
     --radius: 0.5rem
   }
   .dark {
+
+    --gold: 37 89% 95%;
 
     --background: 0 0% 3.9%;
 
