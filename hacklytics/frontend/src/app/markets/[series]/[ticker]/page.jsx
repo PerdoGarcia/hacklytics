@@ -2,6 +2,7 @@
 "use server";
 import { api } from '../../../utils/helpers';
 import MarketDashboard from '@/components/MarketDashboard';
+import Analyst from '@/components/Analyst';
 
 
 export default async function MarketPage({ params }) {
@@ -11,6 +12,7 @@ export default async function MarketPage({ params }) {
 
     try {
         const candleData = await api.get(`/api/candlesticks?series_ticker=${series}&ticker=${ticker}`);
+        // todo: also get data to display on the page
 
         if (!candleData) {
             console.log("No data received");
@@ -21,6 +23,9 @@ export default async function MarketPage({ params }) {
             <div>
                 <h1>Market Page</h1>
                 <MarketDashboard data={candleData.candlesticks || []} />
+                <div>
+                    <Analyst/>
+                </div>
             </div>
         );
     } catch (error) {

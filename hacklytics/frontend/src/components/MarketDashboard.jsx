@@ -1,6 +1,4 @@
 'use client';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ComposedChart, Bar, Area } from 'recharts';
 import CandleChart from './CandleChart';
 
 export default function MarketDashboard({ data }) {
@@ -30,7 +28,7 @@ export default function MarketDashboard({ data }) {
 
     return (
         <div className="space-y-4">
-            <div className="h-96 w-full">
+            <div className="h-96 w-full ">
                 <CandleChart data={chartData} />
             </div>
         </div>
