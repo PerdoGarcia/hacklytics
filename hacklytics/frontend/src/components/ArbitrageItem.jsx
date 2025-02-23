@@ -5,8 +5,8 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle
-} from "@/components/ui/card";
+  CardTitle,
+} from "@/components/ui/card"
 import { useRouter } from "next/navigation";
 
 export function ArbitrageItem(props) {
@@ -14,9 +14,9 @@ export function ArbitrageItem(props) {
   return (
     <div className="flex justify-center w-full">
       <Card 
-  className="w-[450px] py-4 px-6 text-white font-bold bg-[#55626c] transform transition-transform duration-300 hover:scale-105"
-  onClick={() => router.push(`/markets/${props.series_ticker}/${props.ticker}`)}
->
+        className="w-[450px] py-4 px-6 text-white font-bold bg-[#55626c] transform transition-transform duration-300 hover:scale-105"
+        onClick={() => router.push(`/markets/${props.series_ticker}/${props.ticker}`)}
+      >
         <CardTitle>
           <b>{props.title}</b>
         </CardTitle>
