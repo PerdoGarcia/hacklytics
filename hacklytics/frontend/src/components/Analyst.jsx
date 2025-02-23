@@ -103,7 +103,7 @@ export default function Analyst() {
           <div
             ref={chatContainerRef}
             className="chat-container p-4 bg-white shadow-lg rounded"
-            // style={{ maxHeight: "400px", overflowY: "auto" }}
+            style={{ minHeight: "400px", maxHeight: "400px", overflowY: "auto" }}
           >
             {chatLog.map((msg, idx) => (
               <div key={idx} className={`message ${msg.role} my-2`}>
