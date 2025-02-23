@@ -1,28 +1,45 @@
-/* styles.module.css */
-
 .container {
-  /* The parent takes 80% of the screen width, centered */
   width: 80%;
   margin: 0 auto;
-
-  /* Stack children vertically */
   display: flex;
   flex-direction: column;
-
-  /* Optional spacing above */
   padding-top: 20px;
+  background-color: #232b2b; /* Soft background color */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .chart {
-  /* Make the chart full width on its row */
   width: 100%;
-  /* Optional: add some bottom margin so it’s not touching the AI panel */
   margin-bottom: 20px;
 }
 
 .analyst {
-  height: 400px;
-  margin-top: 50px;
-  justify-content: right!important;
   display: flex;
+  justify-content: flex-end; /* Align to the right */
+  margin-top: 50px;
+}
+
+.header {
+  text-align: center;
+  color: #ffffff; /* Dark text for contrast */
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 40px; /* Increased padding for larger screens */
+  }
+
+  .header {
+    font-size: 2rem; /* Larger font size on bigger screens */
+  }
 }

@@ -111,53 +111,46 @@ export default function CandleChart({ data, market }) {
         </div>
 
         {/* Market Details Section */}
-        <div className="lg:col-span-1">
-          <div className="space-y-4">
-            <div className="space-y-2">
-            <div className="flex items-center gap-3">
-              <div className="text-right">
-                <div className="bg-blue-50 px-4 py-2 rounded-lg">
-                  <p className="text-sm font-medium text-blue-600">Yes</p>
-                  <p className="text-xl font-bold text-blue-700">{yesPrice}¢</p>
-                  <p className="text-xs text-blue-600">Payout: ${yesPayout}</p>
-                </div>
-              </div>
-              <div className="text-right">
-                <div className="bg-purple-50 px-4 py-2 rounded-lg">
-                  <p className="text-sm font-medium text-purple-600">No</p>
-                  <p className="text-xl font-bold text-purple-700">{noPrice}¢</p>
-                  <p className="text-xs text-purple-600">Payout: ${noPayout}</p>
-                </div>
-              </div>
-              <div className="text-right">
-                <div className="bg-slate-50 px-4 py-2 rounded-lg">
-                  <p className="text-sm font-medium text-slate-600"> Volume</p>
-                  <p className="text-xl font-bold text-slate-700">${market.volume.toLocaleString()}</p>
-                  <p className="text-xs text-slate-600">24h:</p>
-                  <p className="text-xs text-slate-600">24h: ${market.volume_24h.toLocaleString()}</p>
-                </div>
-              </div>
-              <div className="text-right">
-                <div className="bg-emerald-50 px-4 py-2 rounded-lg">
-                  <p className="text-sm font-medium text-emerald-600">Open Interest</p>
-                  <p className="text-xl font-bold text-emerald-700">{market.open_interest.toLocaleString()}</p>
-                  <p className="text-xs text-emerald-600">Liquidity: ${(market.liquidity/100).toLocaleString()}</p>
-                </div>
+        <div className="flex-1 flex flex-col justify-between">
+          <div className="flex items-center gap-3">
+            <div className="flex-1 text-right">
+              <div className="bg-blue-50 px-4 py-2 rounded-lg">
+                <p className="text-sm font-medium text-blue-600">Yes</p>
+                <p className="text-xl font-bold text-blue-700">{yesPrice}¢</p>
+                <p className="text-xs text-blue-600">Payout: ${yesPayout}</p>
               </div>
             </div>
-
-              <p className="text-sm text-gray-600">
-                <strong>Expiration:</strong> {new Date(market.expiration_time).toLocaleDateString()}
-              </p>
-
-              <div className="text-sm space-y-1">
-                <p></p>
-                <p></p>
-                <p className="text-sm text-gray-600">
-                <strong>Rules:</strong> {market.rules_primary}
-              </p>
+            <div className="flex-1 text-right">
+              <div className="bg-purple-50 px-4 py-2 rounded-lg">
+                <p className="text-sm font-medium text-purple-600">No</p>
+                <p className="text-xl font-bold text-purple-700">{noPrice}¢</p>
+                <p className="text-xs text-purple-600">Payout: ${noPayout}</p>
               </div>
             </div>
+          </div>
+          <div className="flex items-center gap-3 mt-4">
+            <div className="flex-1 text-right">
+              <div className="bg-slate-50 px-4 py-2 rounded-lg">
+                <p className="text-sm font-medium text-slate-600">Volume</p>
+                <p className="text-xl font-bold text-slate-700">${market.volume.toLocaleString()}</p>
+                <p className="text-xs text-slate-600">24h: ${market.volume_24h.toLocaleString()}</p>
+              </div>
+            </div>
+            <div className="flex-1 text-right">
+              <div className="bg-emerald-50 px-4 py-2 rounded-lg">
+                <p className="text-sm font-medium text-emerald-600">Open Interest</p>
+                <p className="text-xl font-bold text-emerald-700">{market.open_interest.toLocaleString()}</p>
+                <p className="text-xs text-emerald-600">Liquidity: ${(market.liquidity / 100).toLocaleString()}</p>
+              </div>
+            </div>
+          </div>
+          <p className="text-sm text-gray-600 mt-4">
+            <strong>Expiration:</strong> {new Date(market.expiration_time).toLocaleDateString()}
+          </p>
+          <div className="text-sm space-y-1">
+            <p className="text-sm text-gray-600">
+              <strong>Rules:</strong> {market.rules_primary}
+            </p>
           </div>
         </div>
       </CardContent>
