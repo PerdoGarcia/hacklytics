@@ -4,7 +4,7 @@ import TopMatrices from './TopMatrices';
 
 export default function MarketDashboard({ data}) {
     const [dashboardData, setDashboardData] = useState(null);
-
+    
     useEffect(() => {
         fetch('/market_data.json')
           .then(response => {
@@ -47,8 +47,8 @@ export default function MarketDashboard({ data}) {
     return (
         <div className="space-y-4">
             <div className="h-96 w-full ">
-                <TopMatrices 
-                    chartData={chartData} 
+                <TopMatrices
+                    chartData={chartData}
                     dashboardData={dashboardData}
                 />
             </div>

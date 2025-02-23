@@ -53,6 +53,10 @@ def get_markets():
         response.raise_for_status()
 
         data = response.json()["market"]
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 
         return jsonify(data)
 
