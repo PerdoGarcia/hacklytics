@@ -1,9 +1,30 @@
 'use client';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ComposedChart, Bar, Area } from 'recharts';
 import CandleChart from './CandleChart';
+import OddsMatrix from './OddsMatrix';
+import { Dancing_Script } from 'next/font/google';
 
 export default function MarketDashboard({ data }) {
+    const [dashboardData, setDashboardData] = useState(null);
+
+    useEffect(() => {
+        fetch('/dummyOdds.json')
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Did not fetch data successfully');
+            }
+            return response.json();
+          })
+          .then(data => setDashboardData(data))
+          .catch(error => console.error('Error fetching JSON:', error));
+      }, []);
+    
+    if (!dashboardData) {
+    return <div>Loading...</div>;
+    }
+    
     const transformData = (candlesticks) => {
         if (!candlesticks || !Array.isArray(candlesticks)) {
           return [];
@@ -26,12 +47,12 @@ export default function MarketDashboard({ data }) {
     }
 
     const chartData = transformData(data);
-    console.log("First 3 transformed:", chartData.slice(0, 3)); // Debug transformed data
 
     return (
         <div className="space-y-4">
             <div className="h-96 w-full">
                 <CandleChart data={chartData} />
+                <OddsMatrix chartData={chartData} dashboardData={dashboardData} />
             </div>
         </div>
     );

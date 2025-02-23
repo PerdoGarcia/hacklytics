@@ -1,0 +1,17 @@
+{
+    "odds": [
+      {
+        "odds1": {
+          "Market1": {
+            "market_yes": 100, 
+            "market_no": -100
+          },
+          "Market2": {
+            "market_yes": 100, 
+            "market_no": -25
+          }
+        }
+      }
+    ]
+  }
+  

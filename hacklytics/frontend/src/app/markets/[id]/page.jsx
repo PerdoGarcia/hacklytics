@@ -3,7 +3,6 @@
 import { api } from '../../utils/helpers';
 import MarketDashboard from '@/components/MarketDashboard';
 
-
 export default async function MarketPage({ params }) {
     console.log("Initial params:", params);
     const resolvedParams = await Promise.resolve(params);

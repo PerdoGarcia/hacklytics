@@ -28,7 +28,6 @@ const chartConfig = {
 };
 
 export default function CandleChart({ data }) {
-    console.log("First 3 items:", data.slice(0, 3));
   return (
     <Card>
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">

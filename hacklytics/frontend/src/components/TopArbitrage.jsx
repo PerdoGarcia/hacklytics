@@ -6,7 +6,6 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-
 } from "@/components/ui/card";
 import { ArbitrageItem } from "./ArbitrageItem";
 
