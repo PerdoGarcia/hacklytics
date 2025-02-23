@@ -33,6 +33,42 @@ def get_event():
         print('Error fetching event data:', str(error))
         return jsonify({'error': str(error)}), 500
 
+
+@kalshi_bp.route('/api/markets', methods=['GET'])
+def get_markets():
+    ticker = request.args.get('ticker')
+
+    if not ticker:
+        return jsonify({'error': 'ticker is required'}), 400
+
+    try:
+        # Make request to Kalshi API
+        response = requests.get(
+            f'https://api.elections.kalshi.com/trade-api/v2/markets/{ticker}',
+            headers={
+                'Authorization': f'Bearer {KALSHI_API_TOKEN}'
+            }
+        )
+
+        # Check if request was successful
+        response.raise_for_status()
+
+        data = response.json()["market"]
+
+        # market_data = {
+        #     "title" : data["title"],
+        #     "ticker" : data["ticker"],
+        #     "volume" : data["volume"],
+
+        # }
+
+        return jsonify(data)
+
+    except requests.exceptions.RequestException as error:
+        print('Error fetching event data:', str(error))
+        return jsonify({'error': str(error)}), 500
+
+
 @kalshi_bp.route('/api/candlesticks', methods=['GET'])
 def get_candlesticks():
     # Get required parameters
@@ -96,7 +132,7 @@ def get_all():
     try:
         # Get list of events
         response = requests.get(
-            f'https://api.elections.kalshi.com/trade-api/v2/events?limit=10&status=open',
+            f'https://api.elections.kalshi.com/trade-api/v2/events?limit=25&status=open',
             headers={
                 'Authorization': f'Bearer {KALSHI_API_TOKEN}'
             }
@@ -104,7 +140,6 @@ def get_all():
         response.raise_for_status()
         data = response.json()
 
-        # events = []/
         markets = []
 
         # Get detailed info for each event
@@ -123,6 +158,8 @@ def get_all():
 
             for market in event_details["markets"]:
                 if market["status"] == "closed" or market["market_type"] != "binary":
+                    continue
+                if market["volume"]  <= 5:
                     continue
 
                 market_details = {
