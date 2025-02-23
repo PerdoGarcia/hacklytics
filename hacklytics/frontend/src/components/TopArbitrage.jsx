@@ -11,7 +11,8 @@ import {
 import { ArbitrageItem } from "./ArbitrageItem";
 import { Button } from "@/components/ui/button";
 
-export function TopArbitrages() {
+export function TopArbitrages({ data }) {
+  console.log(data.slice(0, 5));
   const [data, setData] = useState(null);
   const [page, setPage] = useState(0);
   const [animate, setAnimate] = useState(false);

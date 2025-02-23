@@ -8,8 +8,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useRouter } from "next/navigation";
 
 export function ArbitrageItem(props) {
+  const router = useRouter();
   return (
     <div className="flex justify-center w-full">
       <Card className="w-[450px] py-4 px-6 text-white font-bold bg-[#55626c] transform transition-transform duration-300 hover:scale-105">
