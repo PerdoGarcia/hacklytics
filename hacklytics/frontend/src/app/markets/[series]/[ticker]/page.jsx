@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 import MarketTop from '@/components/MarketTop';
 
 export default async function MarketPage({ params }) {
-  const { series, ticker } = params;
+  const { series, ticker } = await Promise.resolve(params);
   const url = "https://kalshi.com/markets/" + series + "/" + ticker;
   try {
     const candleData = await api.get(
@@ -27,19 +27,18 @@ export default async function MarketPage({ params }) {
           <div className={styles.topComponent}>
             <MarketDashboard data={candleData.candlesticks || []} market={marketData || []} />
           </div>
-    
-          {/* Bottom Container with two side-by-side components */}
-          <div className={styles.bottomContainer}>
-            <div className={styles.leftComponent}>
-              <MarketTop data={candleData.candlesticks || []} />
-            </div>
-            <div className={styles.rightComponent}>
-              <Analyst />
-            </div>
+
+                  <div className={styles.bottomContainer}>
+          <div className={styles.leftComponent}>
+            <MarketTop data={candleData.candlesticks || []} />
+          </div>
+          <div className={styles.rightComponent}>
+            <Analyst />
           </div>
         </div>
+        </div>
       </div>
-    );    
+    );
   } catch (error) {
     console.error('Error fetching data:', error);
     return <div className={styles.error}>Error loading market data</div>;

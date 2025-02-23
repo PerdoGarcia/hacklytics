@@ -94,26 +94,37 @@ export default function Analyst() {
   };
 
   return (
-    <div className=" md:w-1/3">
-      <Card className="bg-white shadow-lg">
+    <div className="w-full">
+      <Card className="bg-white shadow-lg w-full">
         <CardHeader>
           <CardTitle className="text-[#408830]">AI Financial Analyst</CardTitle>
         </CardHeader>
         <CardContent>
           <div
             ref={chatContainerRef}
-            className="chat-container p-4 bg-white shadow-lg rounded"
-            style={{ minHeight: "400px", maxHeight: "400px", overflowY: "auto" }}
+            className="chat-container p-4 bg-white shadow-lg rounded w-full"
+            style={{
+              minHeight: "400px",
+              maxHeight: "400px",
+              overflowY: "auto",
+              overflowX: "hidden" // Add this to prevent horizontal scroll
+            }}
           >
             {chatLog.map((msg, idx) => (
-              <div key={idx} className={`message ${msg.role} my-2`}>
+              <div
+                key={idx}
+                className={`message ${msg.role} my-2 break-words overflow-hidden w-full`}
+                style={{
+                  wordBreak: 'break-word',
+                  maxWidth: '100%'
+                }}
+              >
                 {msg.content}
               </div>
             ))}
-            {/* Optionally, show a "loading" indicator while waiting */}
             {chatLoading && <div className="text-gray-500">Loading...</div>}
           </div>
-          <div className="chat-input flex gap-2 mt-4">
+          <div className="chat-input flex gap-2 mt-4 w-full">
             <Input
               value={chatInput}
               onChange={(e) => setChatInput(e.target.value)}
@@ -123,7 +134,7 @@ export default function Analyst() {
             <Button
               onClick={handleSend}
               disabled={chatLoading}
-              className="bg-[#408830] text-white px-4 py-2 rounded"
+              className="bg-[#408830] text-white px-4 py-2 rounded whitespace-nowrap"
             >
               Send
             </Button>

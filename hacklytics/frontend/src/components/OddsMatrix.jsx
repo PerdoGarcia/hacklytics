@@ -137,24 +137,27 @@ export default function OddsMatrix({ chartData, dashboardData }) {
   }, [dashboardData, oddsMapping, colHeaders, rowHeaders]);
 
   return (
-    <div className="flex justify-center w-[680px] pt-3">
+    <div className="w-full pt-3"> {/* Remove fixed width and justify-center */}
       <Card
-      onClick={() => window.open(url, "_blank")}
+        onClick={() => window.open(url, "_blank")}
+        className="w-full" // Make card full width
       >
         <CardHeader className="flex flex-col justify-center h-full">
-          <CardContent className="grid grid-cols-2">
-            <div>
-                <CardTitle
-                onClick={() => window.open(url, "_blank")}>
-                    {dashboardData.title}
-                </CardTitle>
-                <CardDescription className="pt-2">
-                    From {dashboardData.database}
-                </CardDescription>
-                Similarity score placeholder
+          <CardContent className="grid grid-cols-2 gap-4">
+            <div className="min-w-0"> {/* Prevent text overflow */}
+              <CardTitle
+                onClick={() => window.open(url, "_blank")}
+                className="break-words"
+              >
+                {dashboardData.title}
+              </CardTitle>
+              <CardDescription className="pt-2">
+                From {dashboardData.database}
+              </CardDescription>
+              Similarity score placeholder
             </div>
-            <div>
-                <div ref={svgContainerRef}></div>
+            <div className="flex justify-end"> {/* Align SVG to the right */}
+              <div ref={svgContainerRef}></div>
             </div>
           </CardContent>
         </CardHeader>

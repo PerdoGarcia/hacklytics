@@ -4,7 +4,7 @@ import TopMatrices from './TopMatrices';
 
 export default function MarketDashboard({ data}) {
     const [dashboardData, setDashboardData] = useState(null);
-    
+
     useEffect(() => {
         fetch('/market_data.json')
           .then(response => {
@@ -13,7 +13,11 @@ export default function MarketDashboard({ data}) {
             }
             return response.json();
           })
-          .then(data => setDashboardData(data))
+          .then(data => {
+            // Filter out entries with volume < 20
+            const filteredData = data.filter(item => item.volume >= 20);
+            setDashboardData(filteredData);
+          })
           .catch(error => console.error('Error fetching JSON:', error));
       }, []);
 

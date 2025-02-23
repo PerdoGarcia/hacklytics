@@ -1,7 +1,7 @@
 .layoutContainer {
   display: flex;
   flex-direction: column;
-  
+
   width: 90%;
   max-width: 1500px;
   margin: 0 auto;
@@ -27,48 +27,26 @@ body, html {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
 }
 
-/* Bottom Container (Side-by-Side Layout) */
 .bottomContainer {
   display: flex;
-  gap: 50px; /* Space between left and right components */
+  gap: 24px; /* Add a consistent gap */
   justify-content: space-between;
   width: 100%;
-  max-width: 1500px; /* Adjust this value to your desired maximum width *//* Adjust this value to your desired maximum height */
+  max-width: 1500px;
+  align-items: flex-start; /* Align items at the top */
 }
 
-
-/* Left Component (MarketTop) */
 .leftComponent {
-  flex: 1;
-  min-width: 60%;
-
+  flex: 3; /* Increase flex ratio for more width */
   padding: 5px;
+  width: 100%;
   display: flex;
-  flex-direction: row;
-  align-items: left;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.leftComponent:hover {
-  transform: translateY(-5px); /* Move the component up slightly */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
-  
-}
-
-/* Right Component (Analyst) */
 .rightComponent {
-  flex: 1; /* Takes less space */
-  min-width: 100%;
-
-  padding: 20px;
+  flex: 1; /* Decrease flex ratio */
   display: flex;
-  flex-direction: row;
-  align-items: right;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
 }
-
-.rightComponent:hover {
-  transform: translateY(-5px); /* Move the component up slightly */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
-}
-
