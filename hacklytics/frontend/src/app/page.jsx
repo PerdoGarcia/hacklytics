@@ -10,7 +10,7 @@ export default async function Home() {
   const data = await api.get("/api/all");
   console.log(data);
   return (
-      <div className="min-h-screen bg-[#d4bf79] p-8">
+      <div className="min-h-screen bg-[#232b2b] p-8">
         <div className={styles.container}>
 
         <div className="flex gap-4">
