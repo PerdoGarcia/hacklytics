@@ -9,24 +9,41 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import { ArbitrageItem } from "./ArbitrageItem";
-
-// import button
 import { Button } from "@/components/ui/button";
 
-export function TopArbitrages({ data }) {
-  console.log(data.slice(0, 5));
+export function TopArbitrages() {
+  const [data, setData] = useState(null);
   const [page, setPage] = useState(0);
+  const [animate, setAnimate] = useState(false);
   const pageSize = 5;
+
+  useEffect(() => {
+    fetch('/starterData.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Did not fetch data successfully');
+        }
+        return response.json();
+      })
+      .then(data => setData(data))
+      .catch(error => console.error('Error fetching JSON:', error));
+  }, []);
 
   if (!data) {
     return <div>Loading...</div>;
   }
 
-  // Calculate total pages and slice the arbitrages for the current page
-  const totalArbs = data.length;
+  const totalArbs = data.arbitrages.length;
   const totalPages = Math.ceil(totalArbs / pageSize);
-  const currentArbs = data.slice(page * pageSize, page * pageSize + pageSize);
+  const currentArbs = data.arbitrages.slice(page * pageSize, page * pageSize + pageSize);
 
+  const handlePageChange = (newPage) => {
+    setAnimate(true);
+    setTimeout(() => {
+      setPage(newPage);
+      setAnimate(false);
+    }, 500); // Duration of the animation
+  };
 
   return (
     <Card className={`w-[500px] ${styles.slideLeft} ${'bg-[#3b444b] text-white'}`}>
@@ -39,23 +56,23 @@ export function TopArbitrages({ data }) {
 
       <div className="space-y-4 pb-6">
         {currentArbs.map(arb => (
-          <ArbitrageItem key={arb.title} {...arb} />
+          <div key={arb.title} className={animate ? styles.slideDown : ''}>
+            <ArbitrageItem {...arb} />
+          </div>
         ))}
       </div>
 
       <div className="space-x-2 flex justify-center pb-6">
         <Button
-
           size="sm"
-          onClick={() => setPage(prev => Math.max(prev - 1, 0))}
+          onClick={() => handlePageChange(Math.max(page - 1, 0))}
           disabled={page === 0}
         >
           Previous
         </Button>
         <Button
-
           size="sm"
-          onClick={() => setPage(prev => Math.min(prev + 1, totalPages - 1))}
+          onClick={() => handlePageChange(Math.min(page + 1, totalPages - 1))}
           disabled={page >= totalPages - 1}
         >
           Next
