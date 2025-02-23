@@ -17,13 +17,11 @@ export default async function MarketPage({ params }) {
     );
 
     if (!candleData) {
-      return <div className={styles.error}>No data available</div>;
+      return <div>No data available</div>;
     }
 
     return (
-      <div className = "bg-[#232b2b]">
       <div className={styles.container}>
-        <h1 className={styles.header}>Market Dashboard</h1>
         {/* Top (Chart) */}
         <div className={styles.chart}>
           <MarketDashboard
@@ -37,11 +35,10 @@ export default async function MarketPage({ params }) {
           <Analyst />
         </div>
       </div>
-      </div> 
     );
 
   } catch (error) {
     console.error('Error fetching data:', error);
-    return <div className={styles.error}>Error loading market data</div>;
+    return <div>Error loading market data</div>;
   }
 }

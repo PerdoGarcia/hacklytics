@@ -31,7 +31,6 @@ export default function CandleChart({ data, market }) {
   const noPrice = market.no_ask;
   const yesPayout = ((100 / yesPrice) * 100).toFixed(2);
   const noPayout = ((100 / noPrice) * 100).toFixed(2);
-
   return (
     <Card className="w-full">
       <CardHeader className="flex flex-col space-y-4 border-b py-5">
