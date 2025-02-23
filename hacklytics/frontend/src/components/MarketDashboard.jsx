@@ -1,7 +1,5 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ComposedChart, Bar, Area } from 'recharts';
 import CandleChart from './CandleChart';
 
 export default function MarketDashboard({ data, market }) {
@@ -18,11 +16,11 @@ export default function MarketDashboard({ data, market }) {
           .then(data => setDashboardData(data))
           .catch(error => console.error('Error fetching JSON:', error));
       }, []);
-    
+
     if (!dashboardData) {
     return <div>Loading...</div>;
     }
-    
+
     const transformData = (candlesticks) => {
         if (!candlesticks || !Array.isArray(candlesticks)) {
           return [];
