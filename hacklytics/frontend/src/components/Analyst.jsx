@@ -11,10 +11,6 @@ export default function Analyst() {
   const [chatInput, setChatInput] = useState("");
   const [chatLoading, setChatLoading] = useState(false);
 
-  useEffect(() => {
-    console.log("chatlog", chatLog);
-  }, [chatLog]);
-
   const sendPrompt = async (prompt) => {
     const userMessage = { role: "user", content: prompt };
     // Add the user's message to the chat log.
