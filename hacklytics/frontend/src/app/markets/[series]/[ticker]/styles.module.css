@@ -1,3 +1,25 @@
+/* styles.module.css */
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .container {
   width: 80%;
   margin: 0 auto;
@@ -7,17 +29,38 @@
   background-color: #232b2b; /* Soft background color */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  animation: fadeIn 1s ease-in-out;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
 }
 
 .chart {
   width: 100%;
   margin-bottom: 20px;
+  animation: slideIn 1s ease-in-out;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.chart:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .analyst {
   display: flex;
   justify-content: flex-end; /* Align to the right */
   margin-top: 50px;
+  animation: slideIn 1s ease-in-out;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.analyst:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .header {
@@ -43,3 +86,4 @@
     font-size: 2rem; /* Larger font size on bigger screens */
   }
 }
+

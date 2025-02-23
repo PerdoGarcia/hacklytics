@@ -1,7 +1,13 @@
 .container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 20px 20px;
   margin-top: 50px;
+  height: 100vh
+}
+
+.flexContainer {
+  display: flex;
+  gap: 16px; /* Adjust gap as needed */
 }
