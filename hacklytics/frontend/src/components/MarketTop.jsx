@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import TopMatrices from './TopMatrices';
 
-export default function MarketDashboard({ data}) {
+export default function MarketDashboard({ data, market, url}) {
     const [dashboardData, setDashboardData] = useState(null);
 
     useEffect(() => {
@@ -48,12 +48,16 @@ export default function MarketDashboard({ data}) {
 
     const chartData = transformData(data);
 
+    const yes0 = chartData[chartData.length - 1].price;
+    const title0 = market.title;
+
     return (
         <div className="space-y-4">
             <div className="h-96 w-full ">
                 <TopMatrices
-                    chartData={chartData}
                     dashboardData={dashboardData}
+                    yes0={yes0}
+                    title0={title0}
                 />
             </div>
         </div>

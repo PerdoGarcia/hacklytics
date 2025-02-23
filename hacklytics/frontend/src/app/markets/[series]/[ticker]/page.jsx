@@ -30,7 +30,7 @@ export default async function MarketPage({ params }) {
 
                   <div className={styles.bottomContainer}>
           <div className={styles.leftComponent}>
-            <MarketTop data={candleData.candlesticks || []} />
+            <MarketTop data={candleData.candlesticks || []} market={marketData || []} />
           </div>
           <div className={styles.rightComponent}>
             <Analyst />

@@ -4,7 +4,7 @@ import * as d3 from 'd3';
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 
-export default function OddsMatrix({ chartData, dashboardData }) {
+export default function OddsMatrix({ title0, dashboardData, yes0 }) {
   const uniqueId = dashboardData.unique_id;
   const eventPart = uniqueId.split("_")[1];
   const series = eventPart.split("-")[0];
@@ -136,6 +136,28 @@ export default function OddsMatrix({ chartData, dashboardData }) {
 
   }, [dashboardData, oddsMapping, colHeaders, rowHeaders]);
 
+
+
+  // calc odds from payout matrix values
+  const yes_bid = dashboardData.yes_bid;
+  const yes_ask = dashboardData.yes_ask;
+  const no_bid = dashboardData.no_bid;
+  const no_ask = dashboardData.no_ask;
+
+const yes_mid = (yes_bid + yes_ask) / 2;
+  const no_mid = (no_ask + no_bid) / 2;
+
+  const p_yes = yes_mid / (yes_mid + no_mid);
+  const p_no = no_mid / (yes_mid + no_mid);
+  const odds_yes = 1 / p_yes;
+  const odds_no = 1 / p_no;
+
+  const T = 100;
+  const stake_yes = T * ( (1 / odds_yes) / ((1 / odds_yes) + (1 / odds_no)) )
+  const stake_no = T * ( (1 / odds_no) / ((1 / odds_yes) + (1 / odds_no)) )
+  const revenue = T - (stake_yes + stake_no);
+
+
   return (
     <div className="w-full pt-3"> {/* Remove fixed width and justify-center */}
       <Card
@@ -151,6 +173,19 @@ export default function OddsMatrix({ chartData, dashboardData }) {
               >
                 {dashboardData.title}
               </CardTitle>
+              <CardDescription>
+                Projected Revenue: <span className={
+                  revenue < 0 ? "text-red-500" :
+                  revenue === 0 ? "text-gray-500" :
+                  "text-green-500"
+                }>
+                  {revenue}
+                </span>
+              </CardDescription>
+              <CardDescription>
+                Stakes: {stake_yes} Yes, {stake_no} No
+              </CardDescription>
+
               <CardDescription className="pt-2">
                 From {dashboardData.database}
               </CardDescription>

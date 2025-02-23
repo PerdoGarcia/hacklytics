@@ -19,7 +19,7 @@ export default function MarketDashboard({ url, data, market }) {
   }, []);
 
   useEffect(() => {
-    const filtered = dashboardData.filter(item => item.volume >= 100);
+    const filtered = dashboardData.filter(item => item.volume >= 100 || item.openInterest >= 100);
     setFilteredData(filtered);
   }, [dashboardData]);
 
