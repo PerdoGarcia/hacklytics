@@ -8,12 +8,18 @@ import styles from "./homePage.module.css";
 
 export default async function Home() {
   let data = [];
+  let matrix = [];
+  let market = [];
   try {
     data = await api.get("/api/all");
+    matrix = await api.get("/api/s3/download/matrix.json");
+    market = await api.get("/api/s3/download/market_data.json");
   } catch (error) {
     console.error('Failed to fetch initial data');
     // Use fallback data
     data = [];
+    matrix = [];
+    market = [];
   }
   return (
       <div className="min-h-screen bg-[#232b2b] p-8">
@@ -21,7 +27,7 @@ export default async function Home() {
 
         <div className="flex gap-4">
           <div>
-            <TopArbitrages />
+            <TopArbitrages data={data}/>
           </div>
 
           <div className="flex-1">

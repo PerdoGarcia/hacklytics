@@ -13,31 +13,19 @@ import { ArbitrageItem } from "./ArbitrageItem";
 // import button
 import { Button } from "@/components/ui/button";
 
-export function TopArbitrages() {
-  const [data, setData] = useState(null);
+export function TopArbitrages({ data }) {
+  console.log(data.slice(0, 5));
   const [page, setPage] = useState(0);
   const pageSize = 5;
-
-  useEffect(() => {
-    fetch('/starterData.json')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Did not fetch data successfully');
-        }
-        return response.json();
-      })
-      .then(data => setData(data))
-      .catch(error => console.error('Error fetching JSON:', error));
-  }, []);
 
   if (!data) {
     return <div>Loading...</div>;
   }
 
   // Calculate total pages and slice the arbitrages for the current page
-  const totalArbs = data.arbitrages.length;
+  const totalArbs = data.length;
   const totalPages = Math.ceil(totalArbs / pageSize);
-  const currentArbs = data.arbitrages.slice(page * pageSize, page * pageSize + pageSize);
+  const currentArbs = data.slice(page * pageSize, page * pageSize + pageSize);
 
 
   return (
