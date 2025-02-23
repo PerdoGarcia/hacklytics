@@ -1,5 +1,5 @@
 // utils/helpers.js
-const BASE_URL = 'http://localhost:8000';
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 // Base request helper for standard JSON responses
 const makeRequest = async (endpoint, method = 'GET', body = null) => {
