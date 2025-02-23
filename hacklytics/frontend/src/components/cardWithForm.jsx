@@ -1,12 +1,12 @@
 'use client';
 import styles from '../app/animations.module.css';
 import * as React from "react";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Command, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 
 export function CardWithForm({ events }) {
-  // const router = useRouter();
+  const router = useRouter();
   const [inputValue, setInputValue] = React.useState("");
 
   // Make sure events is an array and has the expected structure

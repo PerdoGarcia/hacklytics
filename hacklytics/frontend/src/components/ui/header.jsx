@@ -30,18 +30,20 @@ const Header = () => {
                   priority
                 /> */}
               </div>
-              <span className="text-2xl font-bold text-[#408830] relative">
+              <span className="text-2xl font-bold text-[#ffffff] relative">
                 Arbitr
-                <span className="text-[#ffffff]">a</span>
-                <span className="text-[#ffffff]">g</span>
+                <span className="text-[#408830]">a</span>
+                <span className="text-[#408830]">i</span>
+                <span className="text-[#ffffff]">d</span>
                 <span className="text-[#ffffff]">e</span>
+                <span className="text-[#ffffff]">r</span>
                 <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#408830] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
               </span>
             </Link>
           </motion.div>
-        
 
-        
+
+
 
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -69,7 +71,7 @@ const Header = () => {
               About
             </Link>
           </motion.div>
-          
+
         </nav>
         </div>
       </div>
