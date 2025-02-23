@@ -7,8 +7,6 @@ from routes.openai import openai_bp
 from routes.grok import grok_bp
 from routes.s3route import s3_bp
 
-
-
 load_dotenv()
 
 def create_app():
