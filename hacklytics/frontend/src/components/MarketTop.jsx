@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import TopMatrices from './TopMatrices';
 
 export default function MarketDashboard({ data, market, url}) {
+    
     const [dashboardData, setDashboardData] = useState(null);
 
     useEffect(() => {

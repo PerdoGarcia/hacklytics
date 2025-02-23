@@ -39,6 +39,7 @@ const makeStreamRequest = async (endpoint, method = 'GET', body = null) => {
     }
 
     // Return the raw response so the caller can use getReader()
+    
     const response = await fetch(`${BASE_URL}${endpoint}`, config);
     return response;
   } catch (error) {
