@@ -1,0 +1,88 @@
+@keyframes slideFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideFromTop {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideFromBottom {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes scaleUp {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.link-shadow {
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+/* This class will add a drop shadow on hover */
+.link-shadow {
+  transition: all 1s ease; /* Smooth transition */
+}
+
+.link-shadow:hover {
+  filter: drop-shadow(0px 5px 15px);
+}
+
+
+
+.slideLeft {
+  animation: slideFromLeft 1s ease-out forwards;
+}
+
+.slideTop {
+  animation: slideFromTop 1s ease-out forwards;
+}
+
+.slideBottom {
+  animation: slideFromBottom 1s ease-out forwards;
+}
+
+.slideRight {
+  animation: slideFromRight 1s ease-out forwards;
+}
+
+.box {
+  animation: scaleUp 1s ease-in-out;
+}

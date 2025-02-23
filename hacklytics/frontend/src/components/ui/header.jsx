@@ -1,23 +1,18 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import React, { useState } from "react";
 import Link from "next/link";
-// import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/nextjs";
 import { motion } from "framer-motion";
+import styles from '../../app/animations.module.css';
 import Image from "next/image";
 
-
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
-//   const { isSignedIn } = useUser();
 
-  const toggleMenu = () => {
-    setIsOpen((prev) => !prev);
-  };
+
+
 
   return (
-    <header className="w-full z-10">
+    <header className={`w-full z-10 ${'bg-[#0e1111] text-white'}`}>
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center space-x-8">
           <motion.div
@@ -35,96 +30,50 @@ const Header = () => {
                   priority
                 /> */}
               </div>
-              <span className="text-2xl font-bold text-gray-800 relative">
+              <span className="text-2xl font-bold text-[#408830] relative">
                 Arbitr
-                <span className="text-[#509048]">a</span>
-                <span className="text-[#509048]">g</span>
-                <span className="text-[#509048]">e</span>
+                <span className="text-[#ffffff]">a</span>
+                <span className="text-[#ffffff]">g</span>
+                <span className="text-[#ffffff]">e</span>
                 <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#408830] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
               </span>
             </Link>
           </motion.div>
+        
+
+        
+
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           <Link
-                  href="/"
-                  className="text-gray-600 hover:text-black transition-colors"
-                >
-                  Home
-                </Link>
-          <nav className="hidden md:flex space-x-6">
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-
-              <Link
-                href="/about"
-                className="text-gray-600 hover:text-gray-900 transition-colors"
-              >
-                About
-              </Link>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-
-            </motion.div>
-          </nav>
-        </div>
-{/*
-        <SignedOut>
-          <Link href="/auth/sign-in" passHref>
-            <span className="text-gray-600 hover:text-black transition-colors">
-              Sign In
-            </span>
+            href="/"
+            className={`${styles['link-shadow']} text-[#ffffff] hover:text-[#ADEBB3]`}
+          >
+            Home
           </Link>
-        </SignedOut>
-        <SignedIn>
-          <UserButton />
-        </SignedIn> */}
+        </motion.div>
 
-        {/* <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
-          <Button variant="outline" className="bg-white hover:bg-gray-50 transition-colors">
-            Sign In
-          </Button>
-        </motion.div> */}
+        <nav className="hidden md:flex space-x-6" >
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <Link
+              href="/about"
+              className={`${styles['link-shadow']} text-[#ffffff] hover:text-[#ADEBB3]`}
+            >
+              About
+            </Link>
+          </motion.div>
+          
+        </nav>
+        </div>
       </div>
     </header>
-
-    //   <header className="fixed top-0 left-0 z-50 w-full bg-white shadow-md">
-    //   <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-    //     {/* Logo */}
-    //     <Link href="/">
-    //       <span className="text-2xl font-bold text-gray-800">traider</span>
-    //     </Link>
-
-    //     {/* Desktop Links */}
-    //     <nav className="hidden md:flex items-center space-x-6">
-    //       {globallinks.map((link) => (
-    //         <Link key={link.name} href={link.href} className="text-gray-600 hover:text-black transition-colors">
-    //           {link.name}
-    //         </Link>
-    //       ))}
-    //       {isSignedIn && (
-    //         <Link href="/simulator" className="text-gray-600 hover:text-black transition-colors">
-    //           Simulator
-    //         </Link>
-    //       )}
-    //       <SignedOut>
-    //       <Link href="/auth/sign-in" passHref>
-    //         <span className="text-gray-600 hover:text-black transition-colors">
-    //           Sign In
-    //         </span>
-    //       </Link>
-    //     </SignedOut>
-    //       <SignedIn>
-    //         <UserButton />
-    //       </SignedIn>
-    //     </nav>
-    //   </div>
-    // </header>
   );
 };
 

@@ -1,0 +1,36 @@
+/* Theme variables for the application */
+:root {
+  /* Light theme */
+  --light-background: #f8f8ff;
+  --light-text: #1a1a1a;
+  --light-card: #ffffff;
+  
+  /* Dark theme */
+  --dark-background: #1a1a1a;
+  --dark-text: #ffd700;
+  --dark-card: #2a2a2a;
+  --dark-header: #1a1a1a;
+  --dark-header-text: #ffd700;
+}
+
+/* Apply theme colors */
+.dark body {
+  background-color: var(--dark-background);
+  color: var(--dark-text);
+}
+
+.dark .card {
+  background-color: var(--dark-card);
+  color: var(--dark-text);
+}
+
+/* Light theme (default) */
+body {
+  background-color: var(--light-background);
+  color: var(--light-text);
+}
+
+.card {
+  background-color: var(--light-card);
+  color: var(--light-text);
+}
