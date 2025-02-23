@@ -11,7 +11,7 @@ import {
 
 export function ArbitrageItem(props) {
   return (
-    <div className="flex justify-center w-full"> {/* Add justify-center and w-full */}
+    <div className="flex justify-center w-full"> 
       <Card className="w-[450px] py-4 px-6">
         <CardTitle>
           {props.title}

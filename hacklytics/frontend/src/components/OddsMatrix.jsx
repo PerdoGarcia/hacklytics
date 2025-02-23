@@ -90,13 +90,10 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 
 export default function OddsMatrix({ chartData, dashboardData }) {
   // Unpack the data props:
-  // Use the last candlestick for the main chart prices.
   const mainStats = chartData[chartData.length - 1];
   const mainAskPrice = mainStats.askPrice,
     mainBidPrice = mainStats.bidPrice;
 
-  // Use the odds from dashboardData.
-  // Assuming the JSON structure is like: { odds: [ { odds1: { Market1: { market_yes, market_no }, ... } } ] }
   const curStats = dashboardData.odds[0].odds1.Market1;
   const curAskPrice = curStats.market_yes,
     curBidPrice = curStats.market_no;
@@ -114,15 +111,12 @@ export default function OddsMatrix({ chartData, dashboardData }) {
   const svgContainerRef = useRef();
 
   useEffect(() => {
-    // Clear previous svg content (in case of re-render).
     d3.select(svgContainerRef.current).selectAll('*').remove();
 
-    // Define dimensions and margins.
     const margin = { top: 20, right: 20, bottom: 20, left: 20 };
     const width = 400 - margin.left - margin.right;
     const height = 200 - margin.top - margin.bottom;
 
-    // Create an SVG element inside the container.
     const svg = d3
       .select(svgContainerRef.current)
       .append('svg')
@@ -133,19 +127,15 @@ export default function OddsMatrix({ chartData, dashboardData }) {
       .append('g')
       .attr('transform', `translate(${margin.left},${margin.top})`);
 
-    // Define our domains.
     const metrics = ['Ask', 'Bid'];
     const types = ['Main', 'Current'];
 
-    // Define x and y scales.
     const x = d3.scaleBand().domain(metrics).range([0, width]).padding(0.1);
     const y = d3.scaleBand().domain(types).range([0, height]).padding(0.1);
 
-    // Define a sequential color scale based on the data values.
     const valueExtent = d3.extent(matrixData, (d) => d.value);
     const color = d3.scaleSequential().domain(valueExtent).interpolator(d3.interpolateBlues);
 
-    // Append a rectangle for each cell in the matrix.
     svg
       .selectAll('rect')
       .data(matrixData)
@@ -159,7 +149,6 @@ export default function OddsMatrix({ chartData, dashboardData }) {
       .append('title')
       .text((d) => d.value);
 
-    // Append text labels in each cell.
     svg
       .selectAll('text')
       .data(matrixData)
@@ -170,30 +159,25 @@ export default function OddsMatrix({ chartData, dashboardData }) {
       .attr('dy', '.35em')
       .attr('text-anchor', 'middle')
       .text((d) => d.value)
-      .style('fill', 'black')
-      .style('font-size', '0.8rem');
-      
-    // Optionally, you can add axes if desired.
-    // const xAxis = d3.axisBottom(x);
-    // const yAxis = d3.axisLeft(y);
-    // svg.append("g")
-    //    .attr("transform", `translate(0, ${height})`)
-    //    .call(xAxis);
-    // svg.append("g")
-    //    .call(yAxis);
+      .style('fill', 'orange')
+      .style('font-size', '1.2rem');
   }, [matrixData]);
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Odds Matrix</CardTitle>
-      </CardHeader>
-      <CardDescription>Stats</CardDescription>
-      <CardContent>
-        {/* The SVG created by D3 will be appended here */}
-        <div ref={svgContainerRef}></div>
-      </CardContent>
-    </Card>
+    <div className="flex w-[400px]">
+      <Card>
+          <CardHeader className="text-center">
+            <CardTitle>Odds Matrix</CardTitle>
+            <CardDescription>Odds from betting sites.</CardDescription>
+          </CardHeader>
+        <div className="flex justify-center">
+            <CardContent>
+            <div ref={svgContainerRef}></div>
+            </CardContent>
+        </div>
+      </Card>
+    </div>
   );
+  
 }
 
