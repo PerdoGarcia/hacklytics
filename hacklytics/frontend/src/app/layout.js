@@ -1,7 +1,10 @@
 "use client"
 import { Geist, Geist_Mono } from "next/font/google";
+import { useState, useEffect } from "react";
 import Header from "../components/ui/header";
 import "./globals.css";
+
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,13 +22,29 @@ const geistMono = Geist_Mono({
 // };
 
 export default function RootLayout({ children }) {
+  const [theme, setTheme] = useState('light')
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light')
+  }
   return (
-    <html lang="en">
+    <html lang="en" className={theme === 'dark' ? 'dark' : ''}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
-        <Header />
-        {children}
+        <Header theme={theme} toggleTheme={toggleTheme} />
+        <main className="min-h-screen bg-background">
+          {children}
+        </main>
       </body>
     </html>
   );

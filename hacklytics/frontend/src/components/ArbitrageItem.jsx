@@ -16,15 +16,15 @@ export function ArbitrageItem(props) {
         <CardTitle>
           {props.title}
         </CardTitle>
-        <CardDescription>
+        <CardDescription style={{ color: 'white' }}>
           Category: {props.Category}
         </CardDescription>
 
-        <div className="flex items-center justify-center pt-2 space-x-4">
-          <CardContent className="bg-green-100 text-green-800 p-2 rounded">
+        <div className="flex items-center bg-[#55626c] justify-center pt-2 space-x-4 text-white">
+          <CardContent className="bg-[#4d6bff] font-bold text-[#ffffff] p-2 rounded">
             Yes Ask: {props.yes_ask}
           </CardContent>
-          <CardContent className="bg-red-100 text-red-800 p-2 rounded">
+          <CardContent className="bg-[#4d6bff] font-bold text-[#ffffff] p-2 rounded"> 
             No Bid: {props.no_bid}
           </CardContent>
         </div>
