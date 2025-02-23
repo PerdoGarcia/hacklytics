@@ -54,13 +54,7 @@ def get_markets():
         response.raise_for_status()
 
         data = response.json()["market"]
-
-        # market_data = {
-        #     "title" : data["title"],
-        #     "ticker" : data["ticker"],
-        #     "volume" : data["volume"],
-
-        # }
+        print(data)
 
         return jsonify(data)
 
@@ -115,7 +109,10 @@ def get_candlesticks():
         # Check if request was successful
         response.raise_for_status()
 
-        return jsonify(response.json())
+        data = response.json()
+
+
+        return jsonify(data)
 
     except requests.exceptions.RequestException as error:
         print(f'Error fetching candlestick data: {error}')
@@ -168,6 +165,7 @@ def get_all():
                 "ticker" : market["ticker"],
                 "yes_ask" : market["yes_ask"],
                 "no_bid" : market["no_bid"],
+                "url": generate_kalshi_url(event_details["event"]["series_ticker"], data["event_ticker"])
                 }
                 markets.append(market_details)
 
@@ -200,3 +198,13 @@ def get_market_display_title(market, event_title):
 def parse_markets():
     # Get list of events
    pass
+
+
+
+def generate_kalshi_url(series_ticker, event_ticker):
+    # Lowercase the series ticker.
+    series_slug = series_ticker.lower()
+    # For the event slug, you might simply use the event ticker lowercased,
+    # or you might need to transform it further (e.g., remove extra characters)
+    event_slug = event_ticker.lower()
+    return f"https://kalshi.com/markets/{series_slug}/{event_slug}"
