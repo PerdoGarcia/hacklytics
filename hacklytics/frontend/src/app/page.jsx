@@ -7,8 +7,14 @@ import styles from "./homePage.module.css";
 
 
 export default async function Home() {
-  const data = await api.get("/api/all");
-  console.log(data);
+  let data = [];
+  try {
+    data = await api.get("/api/all");
+  } catch (error) {
+    console.error('Failed to fetch initial data');
+    // Use fallback data
+    data = [];
+  }
   return (
       <div className="min-h-screen bg-[#232b2b] p-8">
         <div className={styles.container}>

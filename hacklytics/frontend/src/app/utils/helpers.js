@@ -1,7 +1,7 @@
 // utils/helpers.js
 const BASE_URL = 'http://localhost:8000';
 
-// Base request helper
+// Base request helper for standard JSON responses
 const makeRequest = async (endpoint, method = 'GET', body = null) => {
   try {
     const config = {
@@ -24,15 +24,36 @@ const makeRequest = async (endpoint, method = 'GET', body = null) => {
   }
 };
 
+// Base request helper for streaming endpoints
+const makeStreamRequest = async (endpoint, method = 'GET', body = null) => {
+  try {
+    const config = {
+      method,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    if (body) {
+      config.body = JSON.stringify(body);
+    }
+
+    // Return the raw response so the caller can use getReader()
+    const response = await fetch(`${BASE_URL}${endpoint}`, config);
+    return response;
+  } catch (error) {
+    console.error('Stream API Error:', error);
+    throw error;
+  }
+};
+
 // HTTP method helpers
 export const api = {
   get: (endpoint) => makeRequest(endpoint),
   post: (endpoint, body) => makeRequest(endpoint, 'POST', body),
+  // New helper for streaming endpoints:
+  postStream: (endpoint, body) => makeStreamRequest(endpoint, 'POST', body),
   put: (endpoint, body) => makeRequest(endpoint, 'PUT', body),
   patch: (endpoint, body) => makeRequest(endpoint, 'PATCH', body),
   delete: (endpoint) => makeRequest(endpoint, 'DELETE')
 };
-
-// Then use them like:
-// const data = await api.get('/api/events/KXROBOTMARS-35');
-// const newOrder = await api.post('/api/orders', { ticker: 'SOME-TICKER' });
