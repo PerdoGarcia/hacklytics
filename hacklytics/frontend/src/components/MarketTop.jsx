@@ -1,9 +1,8 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import CandleChart from './CandleChart';
 import TopMatrices from './TopMatrices';
 
-export default function MarketDashboard({ data, market }) {
+export default function MarketDashboard({ data}) {
     const [dashboardData, setDashboardData] = useState(null);
 
     useEffect(() => {
@@ -48,9 +47,9 @@ export default function MarketDashboard({ data, market }) {
     return (
         <div className="space-y-4">
             <div className="h-96 w-full ">
-                <CandleChart 
-                    data={chartData}
-                    market={market || []}
+                <TopMatrices 
+                    chartData={chartData} 
+                    dashboardData={dashboardData}
                 />
             </div>
         </div>

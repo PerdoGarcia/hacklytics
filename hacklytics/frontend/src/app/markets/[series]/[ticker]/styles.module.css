@@ -1,89 +1,74 @@
-/* styles.module.css */
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes slideIn {
-  0% {
-    transform: translateY(-50px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.container {
-  width: 80%;
-  margin: 0 auto;
+.layoutContainer {
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
-  background-color: #232b2b; /* Soft background color */
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  animation: fadeIn 1s ease-in-out;
-  transition: transform 0.3s, box-shadow 0.3s;
+  
+  width: 90%;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-.container:hover {
-  transform: scale(1.02);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
+body, html {
+  height: 100%;
+  margin: 0;
 }
 
-.chart {
+
+
+/* Top Component */
+.topComponent {
   width: 100%;
-  margin-bottom: 20px;
-  animation: slideIn 1s ease-in-out;
-  transition: transform 0.3s, box-shadow 0.3s;
+  margin-bottom: 70px; /* Space between top and bottom sections */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.chart:hover {
-  transform: scale(1.02);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+.topComponent:hover {
+  transform: translateY(-5px); /* Move the component up slightly */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
 }
 
-.analyst {
+/* Bottom Container (Side-by-Side Layout) */
+.bottomContainer {
   display: flex;
-  justify-content: flex-end; /* Align to the right */
-  margin-top: 50px;
-  animation: slideIn 1s ease-in-out;
-  transition: transform 0.3s, box-shadow 0.3s;
+  gap: 50px; /* Space between left and right components */
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1500px; /* Adjust this value to your desired maximum width *//* Adjust this value to your desired maximum height */
 }
 
-.analyst:hover {
-  transform: scale(1.02);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+/* Left Component (MarketTop) */
+.leftComponent {
+  flex: 1;
+  min-width: 60%;
+
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.header {
-  text-align: center;
-  color: #ffffff; /* Dark text for contrast */
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 20px;
+.leftComponent:hover {
+  transform: translateY(-5px); /* Move the component up slightly */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
+  
 }
 
-.error {
-  color: red;
-  text-align: center;
-  font-weight: bold;
+/* Right Component (Analyst) */
+.rightComponent {
+  flex: 1; /* Takes less space */
+  min-width: 100%;
+
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: right;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-@media (min-width: 768px) {
-  .container {
-    padding: 40px; /* Increased padding for larger screens */
-  }
-
-  .header {
-    font-size: 2rem; /* Larger font size on bigger screens */
-  }
+.rightComponent:hover {
+  transform: translateY(-5px); /* Move the component up slightly */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
 }
 

@@ -3,6 +3,7 @@ import { api } from '../../../utils/helpers';
 import MarketDashboard from '@/components/MarketDashboard';
 import Analyst from '@/components/Analyst';
 import styles from './styles.module.css';
+import MarketTop from '@/components/MarketTop';
 
 export default async function MarketPage({ params }) {
   const { series, ticker } = params;
@@ -16,29 +17,31 @@ export default async function MarketPage({ params }) {
     );
 
     if (!candleData) {
-      return <div>No data available</div>;
+      return <div className={styles.error}>No data available</div>;
     }
 
     return (
       <div className="bg-[#232b2b]">
-        <div className={styles.container}>
-          {/* Top (Chart) */}
-          <div className={styles.chart}>
-            <MarketDashboard
-              data={candleData.candlesticks || []}
-              market={marketData || []}
-            />
+        <div className={styles.layoutContainer}>
+          {/* Top Component */}
+          <div className={styles.topComponent}>
+            <MarketDashboard data={candleData.candlesticks || []} market={marketData || []} />
           </div>
-
-          {/* Underneath (AI panel) */}
-          <div className={styles.analyst}>
-            <Analyst />
+    
+          {/* Bottom Container with two side-by-side components */}
+          <div className={styles.bottomContainer}>
+            <div className={styles.leftComponent}>
+              <MarketTop data={candleData.candlesticks || []} />
+            </div>
+            <div className={styles.rightComponent}>
+              <Analyst />
+            </div>
           </div>
         </div>
       </div>
-    );
+    );    
   } catch (error) {
     console.error('Error fetching data:', error);
-    return <div>Error loading market data</div>;
+    return <div className={styles.error}>Error loading market data</div>;
   }
 }
