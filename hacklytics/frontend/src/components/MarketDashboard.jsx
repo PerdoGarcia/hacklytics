@@ -3,61 +3,67 @@ import React, { useState, useEffect } from 'react';
 import CandleChart from './CandleChart';
 import TopMatrices from './TopMatrices';
 
-export default function MarketDashboard({ data, market }) {
-    const [dashboardData, setDashboardData] = useState(null);
+export default function MarketDashboard({ url, data, market }) {
+  const [dashboardData, setDashboardData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
 
-    useEffect(() => {
-        fetch('/market_data.json')
-          .then(response => {
-            if (!response.ok) {
-              throw new Error('Did not fetch data successfully');
-            }
-            return response.json();
-          })
-          .then(data => setDashboardData(data))
-          .catch(error => console.error('Error fetching JSON:', error));
-      }, []);
-
-    if (!dashboardData) {
-    return <div>Loading...</div>;
-    }
-
-    const transformData = (candlesticks) => {
-        if (!candlesticks || !Array.isArray(candlesticks)) {
-          return [];
+  useEffect(() => {
+    fetch('/market_data.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Did not fetch data successfully');
         }
+        return response.json();
+      })
+      .then(data => setDashboardData(data))
+      .catch(error => console.error('Error fetching JSON:', error));
+  }, []);
 
-        return candlesticks.map(candlestick => {
-            const currentPrice = candlestick.price.mean !== null
-                ? candlestick.price.mean
-                : candlestick.price.previous;
+  useEffect(() => {
+    const filtered = dashboardData.filter(item => item.volume >= 10);
+    setFilteredData(filtered);
+  }, [dashboardData]);
 
-            return {
-                timestamp: new Date(candlestick.end_period_ts * 1000).toLocaleDateString(),
-                price: currentPrice,
-                bid: candlestick.yes_bid.close,
-                ask: candlestick.yes_ask.close,
-                volume: candlestick.volume,
-                openInterest: candlestick.open_interest
-            };
-        });
+  // Check if dashboardData is empty to show a loading state
+  if (dashboardData.length === 0) {
+    return <div>Loading...</div>;
+  }
+
+  const transformData = (candlesticks) => {
+    if (!candlesticks || !Array.isArray(candlesticks)) {
+      return [];
     }
 
-    const chartData = transformData(data);
+    return candlesticks.map(candlestick => {
+      const currentPrice = candlestick.price.mean !== null
+        ? candlestick.price.mean
+        : candlestick.price.previous;
 
-    return (
-        <div className="space-y-4">
-            <div className="h-96 w-full ">
-                <CandleChart 
-                    data={chartData}
-                    market={market || []}
-                />
+      return {
+        timestamp: new Date(candlestick.end_period_ts * 1000).toLocaleDateString(),
+        price: currentPrice,
+        bid: candlestick.yes_bid.close,
+        ask: candlestick.yes_ask.close,
+        volume: candlestick.volume,
+        openInterest: candlestick.open_interest
+      };
+    });
+  };
 
-                <TopMatrices 
-                    chartData={chartData} 
-                    dashboardData={dashboardData} 
-                />
-            </div>
-        </div>
-    );
+  const chartData = transformData(data);
+
+  return (
+    <div className="space-y-4">
+      <div className="h-96 w-full">
+        <CandleChart
+          url={url}
+          data={chartData}
+          market={market || []}
+        />
+
+        {/* Pass filteredData if you only want items with volume >= 10 */}
+        <TopMatrices dashboardData={filteredData} />
+      </div>
+    </div>
+  );
 }

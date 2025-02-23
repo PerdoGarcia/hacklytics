@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 
 export default async function MarketPage({ params }) {
   const { series, ticker } = params;
-
+  const url = "https://kalshi.com/markets/" + series + "/" + ticker;
   try {
     const candleData = await api.get(
       `/api/candlesticks?series_ticker=${series}&ticker=${ticker}`
@@ -25,12 +25,12 @@ export default async function MarketPage({ params }) {
           {/* Top (Chart) */}
           <div className={styles.chart}>
             <MarketDashboard
+              url={url}
               data={candleData.candlesticks || []}
               market={marketData || []}
             />
           </div>
 
-          {/* Underneath (AI panel) */}
           <div className={styles.analyst}>
             <Analyst />
           </div>

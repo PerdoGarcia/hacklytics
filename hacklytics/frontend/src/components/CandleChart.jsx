@@ -26,7 +26,7 @@ const chartConfig = {
   },
 };
 
-export default function CandleChart({ data, market }) {
+export default function CandleChart({ url, data, market }) {
   const yesPrice = market.yes_ask;
   const noPrice = market.no_ask;
   const yesPayout = ((100 / yesPrice) * 100).toFixed(2);
@@ -36,7 +36,9 @@ export default function CandleChart({ data, market }) {
       <CardHeader className="flex flex-col space-y-4 border-b py-5">
         <div className="flex items-center justify-between">
           <div className="flex-1">
-            <CardTitle className="text-xl">{market.title}</CardTitle>
+            <CardTitle
+            onClick={() => window.open(url, "_blank")}
+            className="text-xl">{market.title}</CardTitle>
             <CardDescription className="mt-1">
               Showing bid/ask spread and trade prices
             </CardDescription>
