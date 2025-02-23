@@ -1,5 +1,4 @@
-import * as React from "react"
-
+import * as React from "react";
 import {
   Card,
   CardContent,
@@ -14,14 +13,15 @@ export function ArbitrageItem(props) {
   const router = useRouter();
   return (
     <div className="flex justify-center w-full">
-      <Card className="w-[450px] py-4 px-6"
-      onClick={() => router.push(`/markets/${props.series_ticker}/${props.ticker}`)}
+      <Card 
+        className="w-[450px] py-4 px-6 text-white font-bold bg-[#55626c] transform transition-transform duration-300 hover:scale-105"
+        onClick={() => router.push(`/markets/${props.series_ticker}/${props.ticker}`)}
       >
         <CardTitle>
-          {props.title}
+          <b>{props.title}</b>
         </CardTitle>
-        <CardDescription style={{ color: 'white' }}>
-          Category: {props.Category}
+        <CardDescription className="text-[#F9F6EE] font-it">
+          <i>Category: {props.Category}</i>
         </CardDescription>
 
         <div className="flex items-center bg-[#55626c] justify-center pt-2 space-x-4 text-white">
