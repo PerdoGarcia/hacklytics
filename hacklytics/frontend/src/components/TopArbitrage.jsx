@@ -12,8 +12,10 @@ import { ArbitrageItem } from "./ArbitrageItem";
 
 // import button
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 export function TopArbitrages({ data }) {
+  // const router = useRouter();
   console.log(data.slice(0, 5));
   const [page, setPage] = useState(0);
   const pageSize = 5;

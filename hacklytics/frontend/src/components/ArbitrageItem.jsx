@@ -8,11 +8,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { useRouter } from "next/navigation";
 
 export function ArbitrageItem(props) {
+  const router = useRouter();
   return (
-    <div className="flex justify-center w-full"> 
-      <Card className="w-[450px] py-4 px-6">
+    <div className="flex justify-center w-full">
+      <Card className="w-[450px] py-4 px-6"
+      onClick={() => router.push(`/markets/${props.series_ticker}/${props.ticker}`)}
+      >
         <CardTitle>
           {props.title}
         </CardTitle>
@@ -24,7 +28,7 @@ export function ArbitrageItem(props) {
           <CardContent className="bg-[#4d6bff] font-bold text-[#ffffff] p-2 rounded">
             Yes Ask: {props.yes_ask}
           </CardContent>
-          <CardContent className="bg-[#4d6bff] font-bold text-[#ffffff] p-2 rounded"> 
+          <CardContent className="bg-[#4d6bff] font-bold text-[#ffffff] p-2 rounded">
             No Bid: {props.no_bid}
           </CardContent>
         </div>

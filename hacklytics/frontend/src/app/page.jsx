@@ -6,6 +6,7 @@ import { api } from './utils/helpers';
 import styles from "./homePage.module.css";
 
 
+// router.push(`/markets/${suggestion.series_ticker}/${suggestion.ticker}`);
 export default async function Home() {
   let data = [];
   let matrix = [];
