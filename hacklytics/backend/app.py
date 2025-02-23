@@ -5,6 +5,9 @@ from dotenv import load_dotenv
 from routes.kalshi import kalshi_bp
 from routes.openai import openai_bp
 from routes.grok import grok_bp
+from routes.s3route import s3_bp
+
+
 
 load_dotenv()
 
@@ -16,11 +19,12 @@ def create_app():
     app.config['OPENAI_API_KEY'] = os.getenv('OPENAI_API_KEY')
     app.config['GROK_API_KEY'] = os.getenv('GROK_API_KEY')
 
-    CORS(app, origins=["http://localhost:3000"], supports_credentials=True)
+    CORS(app, origins=["http://localhost:3000","https://arbitraider.tech","http://arbitraider.tech"], supports_credentials=True)
 
     app.register_blueprint(kalshi_bp)
     app.register_blueprint(openai_bp)
     app.register_blueprint(grok_bp)
+    app.register_blueprint(s3_bp)
 
     return app
 

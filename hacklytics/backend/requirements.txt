@@ -3,3 +3,5 @@ flask-cors
 python-dotenv
 requests
 openai
+s3
+boto3
