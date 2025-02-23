@@ -3,12 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ComposedChart, Bar, Area } from 'recharts';
 import CandleChart from './CandleChart';
+import TopMatrices from './TopMatrices';
 
 export default function MarketDashboard({ data, market }) {
     const [dashboardData, setDashboardData] = useState(null);
 
     useEffect(() => {
-        fetch('/dummyOdds.json')
+        fetch('/market_data.json')
           .then(response => {
             if (!response.ok) {
               throw new Error('Did not fetch data successfully');
@@ -49,8 +50,15 @@ export default function MarketDashboard({ data, market }) {
     return (
         <div className="space-y-4">
             <div className="h-96 w-full ">
-                <CandleChart data={chartData}
-                market={market || []}/>
+                <CandleChart 
+                    data={chartData}
+                    market={market || []}
+                />
+
+                <TopMatrices 
+                    chartData={chartData} 
+                    dashboardData={dashboardData} 
+                />
             </div>
         </div>
     );
