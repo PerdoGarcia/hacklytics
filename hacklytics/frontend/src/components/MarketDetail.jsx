@@ -9,13 +9,13 @@ export default function MarketDetails({ market }) {
   const data = market;
   return (
     <div>
-    <Card className="shadow-md border rounded-lg p-4">
+    <Card className="shadow-md border rounded-lg p-4 bg-white">
       <CardHeader>
         <CardTitle className="text-lg font-semibold">{data.title}</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-3">
+      <CardContent className="space-y-4">
         <div className="flex flex-wrap gap-2">
-          <Badge className="bg-gray-100 text-gray-800">Type: {market.market_type.toUpperCase()}</Badge>
+          <Badge className="bg-blue-50 text-blue-700">Type: {market.market_type.toUpperCase()}</Badge>
           <Badge className={`text-white ${market.status === "active" ? "bg-green-500" : "bg-gray-500"}`}>
             {market.status.toUpperCase()}
           </Badge>

@@ -1,4 +1,5 @@
 'use client';
+import styles from '../app/animations.module.css';
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -23,10 +24,10 @@ export function CardWithForm({ events }) {
   );
 
   return (
-    <Card className="w-[400px]">
+    <Card className={`w-[400px] ${styles.slideTop} bg-[#3b444b]`}>
       <CardHeader>
-        <CardTitle>Search a market</CardTitle>
-        <CardDescription>Enter a ticker or a description of event</CardDescription>
+        <CardTitle className="text-[#ffffff]">Search a market</CardTitle>
+        <CardDescription className="text-[#ffffff]">Enter a ticker or a description of event</CardDescription>
       </CardHeader>
       <CardContent>
         <Command>
@@ -35,8 +36,8 @@ export function CardWithForm({ events }) {
             value={inputValue}
             onValueChange={setInputValue}
           />
-          <CommandList className="max-h-[300px] overflow-y-auto">
-            <CommandGroup heading="Markets">
+          <CommandList className="max-h-[300px] overflow-y-auto bg-[#55626c]">
+            <CommandGroup  className = "text-white">
               {filteredSuggestions.map((suggestion) => (
                 <CommandItem
                   key={suggestion.ticker}

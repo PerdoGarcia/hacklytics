@@ -14,11 +14,11 @@ export default function BetPanel({ market }) {
   const payoutNo = amount ? (amount / noPrice) * market.notional_value : 0;
 
   return (
-    <Card className="shadow-md border rounded-lg p-4">
+    <Card className="shadow-md border rounded-lg p-4 bg-white">
       <CardHeader>
         <CardTitle className="text-lg font-semibold">Place Your Bet</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-6">
         <div className="flex justify-between items-center">
           <span className="text-sm font-medium">Yes</span>
           <Button variant="outline" className="bg-blue-100 text-blue-600">

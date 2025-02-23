@@ -1,4 +1,5 @@
 "use client";
+import styles from '../app/animations.module.css';
 import * as React from "react";
 import { useState, useEffect } from "react";
 import {
@@ -6,7 +7,6 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-
 } from "@/components/ui/card";
 import { ArbitrageItem } from "./ArbitrageItem";
 
@@ -39,12 +39,13 @@ export function TopArbitrages() {
   const totalPages = Math.ceil(totalArbs / pageSize);
   const currentArbs = data.arbitrages.slice(page * pageSize, page * pageSize + pageSize);
 
+
   return (
-    <Card className="w-[500px]">
+    <Card className={`w-[500px] ${styles.slideLeft} ${'bg-[#3b444b] text-white'}`}>
       <CardHeader className="text-center">
-        <CardTitle>Top Arbitrages</CardTitle>
+        <CardTitle className="text-[#ffffff]">Top Arbitrages</CardTitle>
         <CardDescription>
-          Top calculated arbitrages just for you by our algorithm!
+          <span className="text-[#ffffff]">Top calculated arbitrages just for you by our algorithm!</span>
         </CardDescription>
       </CardHeader>
 
@@ -56,7 +57,7 @@ export function TopArbitrages() {
 
       <div className="space-x-2 flex justify-center pb-6">
         <Button
-          variant="outline"
+
           size="sm"
           onClick={() => setPage(prev => Math.max(prev - 1, 0))}
           disabled={page === 0}
@@ -64,7 +65,7 @@ export function TopArbitrages() {
           Previous
         </Button>
         <Button
-          variant="outline"
+
           size="sm"
           onClick={() => setPage(prev => Math.min(prev + 1, totalPages - 1))}
           disabled={page >= totalPages - 1}
