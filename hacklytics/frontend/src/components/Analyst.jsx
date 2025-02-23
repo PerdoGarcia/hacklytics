@@ -94,7 +94,7 @@ export default function Analyst() {
   };
 
   return (
-    <div className="w-full md:w-1/3">
+    <div className=" md:w-1/3">
       <Card className="bg-white shadow-lg">
         <CardHeader>
           <CardTitle className="text-[#408830]">AI Financial Analyst</CardTitle>
@@ -103,7 +103,7 @@ export default function Analyst() {
           <div
             ref={chatContainerRef}
             className="chat-container p-4 bg-white shadow-lg rounded"
-            style={{ maxHeight: "400px", overflowY: "auto" }}
+            style={{ minHeight: "400px", maxHeight: "400px", overflowY: "auto" }}
           >
             {chatLog.map((msg, idx) => (
               <div key={idx} className={`message ${msg.role} my-2`}>

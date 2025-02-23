@@ -1,0 +1,28 @@
+/* styles.module.css */
+
+.container {
+  /* The parent takes 80% of the screen width, centered */
+  width: 80%;
+  margin: 0 auto;
+
+  /* Stack children vertically */
+  display: flex;
+  flex-direction: column;
+
+  /* Optional spacing above */
+  padding-top: 20px;
+}
+
+.chart {
+  /* Make the chart full width on its row */
+  width: 100%;
+  /* Optional: add some bottom margin so it’s not touching the AI panel */
+  margin-bottom: 20px;
+}
+
+.analyst {
+  height: 400px;
+  margin-top: 50px;
+  justify-content: right!important;
+  display: flex;
+}
