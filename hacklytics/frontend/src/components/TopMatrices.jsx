@@ -4,11 +4,12 @@ import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/ca
 import { Button } from "@/components/ui/button";
 import OddsMatrix from "./OddsMatrix";
 
-export default function TopMatrices({ chartData, dashboardData }) {
+export default function TopMatrices({ dashboardData }) {
   // Ensure dashboardData is an array.
   if (!Array.isArray(dashboardData)) {
     return <div>No matrices data available.</div>;
   }
+
 
   const [page, setPage] = useState(0);
   const pageSize = 2;
@@ -29,9 +30,8 @@ export default function TopMatrices({ chartData, dashboardData }) {
 
       <div className="space-y-4 pb-6">
         {currentMatrices.map((matrix, index) => (
-          <OddsMatrix 
+          <OddsMatrix
             key={index}
-            chartData={chartData}
             dashboardData={matrix}
           />
         ))}

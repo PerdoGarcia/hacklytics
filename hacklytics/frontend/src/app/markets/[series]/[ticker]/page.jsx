@@ -7,7 +7,7 @@ import MarketTop from '@/components/MarketTop';
 
 export default async function MarketPage({ params }) {
   const { series, ticker } = params;
-
+  const url = "https://kalshi.com/markets/" + series + "/" + ticker;
   try {
     const candleData = await api.get(
       `/api/candlesticks?series_ticker=${series}&ticker=${ticker}`

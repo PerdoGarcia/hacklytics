@@ -5,8 +5,13 @@ import * as d3 from 'd3';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 
 export default function OddsMatrix({ chartData, dashboardData }) {
+  const uniqueId = dashboardData.unique_id;
+  const eventPart = uniqueId.split("_")[1];
+  const series = eventPart.split("-")[0];
+  const ticker = eventPart;
+  const url = `https://kalshi.com/markets/${series.toLowerCase()}/${ticker.toLowerCase()}`;
+
   // Log the dashboardData to ensure it's being passed in correctly.
-  console.log("GLINKATRON", dashboardData);
 
   // Prepare a mapping for the odds.
   const oddsMapping = [
@@ -133,11 +138,14 @@ export default function OddsMatrix({ chartData, dashboardData }) {
 
   return (
     <div className="flex justify-center w-[680px] pt-3">
-      <Card>
+      <Card
+      onClick={() => window.open(url, "_blank")}
+      >
         <CardHeader className="flex flex-col justify-center h-full">
           <CardContent className="grid grid-cols-2">
             <div>
-                <CardTitle>
+                <CardTitle
+                onClick={() => window.open(url, "_blank")}>
                     {dashboardData.title}
                 </CardTitle>
                 <CardDescription className="pt-2">

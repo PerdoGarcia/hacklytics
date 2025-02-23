@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, request
 import requests
 from config import KALSHI_API_TOKEN
-# import time
 import time
 
 kalshi_bp = Blueprint('kalshi', __name__)
@@ -54,13 +53,6 @@ def get_markets():
         response.raise_for_status()
 
         data = response.json()["market"]
-
-        # market_data = {
-        #     "title" : data["title"],
-        #     "ticker" : data["ticker"],
-        #     "volume" : data["volume"],
-
-        # }
 
         return jsonify(data)
 
@@ -115,7 +107,9 @@ def get_candlesticks():
         # Check if request was successful
         response.raise_for_status()
 
-        return jsonify(response.json())
+        data = response.json()
+
+        return jsonify(data)
 
     except requests.exceptions.RequestException as error:
         print(f'Error fetching candlestick data: {error}')
@@ -123,9 +117,6 @@ def get_candlesticks():
             'error': 'API request failed',
             'message': str(error)
         }), 500
-
-    # status: open
-    # https://api.elections.kalshi.com/trade-api/v2/events?limit=10
 
 @kalshi_bp.route('/api/all', methods=['GET'])
 def get_all():
@@ -159,15 +150,16 @@ def get_all():
             for market in event_details["markets"]:
                 if market["status"] == "closed" or market["market_type"] != "binary":
                     continue
-                if market["volume"]  <= 5:
+                if market["volume"] <= 5:
                     continue
 
                 market_details = {
-                "series_ticker" : event_details["event"]["series_ticker"],
-                "title" : get_market_display_title(market, event_details["event"]["title"]),
-                "ticker" : market["ticker"],
-                "yes_ask" : market["yes_ask"],
-                "no_bid" : market["no_bid"],
+                    "series_ticker": event_details["event"]["series_ticker"],
+                    "title": get_market_display_title(market, event_details["event"]["title"]),
+                    "ticker": market["ticker"],
+                    "yes_ask": market["yes_ask"],
+                    "no_bid": market["no_bid"],
+                    "url": generate_kalshi_url(event_details["event"]["series_ticker"], event_details["event"]["event_ticker"])
                 }
                 markets.append(market_details)
 
@@ -199,4 +191,12 @@ def get_market_display_title(market, event_title):
 
 def parse_markets():
     # Get list of events
-   pass
+    pass
+
+def generate_kalshi_url(series_ticker, event_ticker):
+    # Lowercase the series ticker.
+    series_slug = series_ticker.lower()
+    # For the event slug, you might simply use the event ticker lowercased,
+    # or you might need to transform it further (e.g., remove extra characters)
+    event_slug = event_ticker.lower()
+    return f"https://kalshi.com/markets/{series_slug}/{event_slug}"
