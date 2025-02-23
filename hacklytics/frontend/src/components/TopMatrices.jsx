@@ -20,7 +20,7 @@ export default function TopMatrices({ dashboardData }) {
   const currentMatrices = dashboardData.slice(page * pageSize, page * pageSize + pageSize);
 
   return (
-    <Card className="h-[500px] w-full flex flex-col bg-black ">
+    <Card className="h-[500px] w-full flex flex-col bg-white ">
       <CardHeader className="text-center flex-none pb-2"> {/* Reduce padding */}
         <CardTitle>Top Matrices</CardTitle>
         <CardDescription>
